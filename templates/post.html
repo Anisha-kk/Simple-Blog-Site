@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ post.title }}</h2>
+<p>{{ post.content }}</p>
+<a href="/posts/{{ post.id }}/edit">Edit</a>
+<br>
+<form method="post" action="/posts/{{ post.id }}/delete" 
+      onsubmit="return confirm('Are you sure you want to delete this post?');">
+    <button type="submit" style="background:red;color:white;">
+        Delete
+    </button>
+</form>
+<a href="/">← Back</a>
+{% endblock %}
