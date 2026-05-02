@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>All Posts</h2>
+
+<h1>My Posts</h1>
+
 {% if posts %}
     {% for post in posts %}
-        <div class="post">
+        <div>
             <h3>
                 <a href="/posts/{{ post.id }}">{{ post.title }}</a>
             </h3>
-            <p>By {{ post.author.username }}</p>
-            <p>{{ post.content[:150] }}...</p>
-            <p>Created on:{{ post.created_at.strftime("%d %b %Y, %I:%M %p") }}</p>
-            <p>Last Updated on:{{ post.updated_at.strftime("%d %b %Y, %I:%M %p") }}</p>
+
+            <a href="/posts/{{ post.id }}/edit">Edit</a>
+
+            <form method="post" action="/posts/{{ post.id }}/delete">
+                <button type="submit">Delete</button>
+            </form>
             <div>
                 {% if page > 1 %}
                     <a href="/?page={{ page - 1 }}">Previous</a>
@@ -20,8 +24,10 @@
                 <a href="/?page={{ page + 1 }}">Next</a>
             </div>
         </div>
+        <hr>
     {% endfor %}
 {% else %}
-    <p>No posts yet</p>
+    <p>You haven't created any posts yet.</p>
 {% endif %}
+
 {% endblock %}

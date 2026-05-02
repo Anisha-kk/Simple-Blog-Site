@@ -1,3 +1,5 @@
 __pycache__/
 .vscode/
 Important details/
+secret.env
+secret_key_generation.py

@@ -1,16 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simple Blog</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 15px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1><a href="/">My Blog</a></h1>
-        <a href="/create">New Post</a>
-    </header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+
+{% if user %}
+    <div class="welcome">
+        <h2>Welcome, {{ user.username }}</h2>
+    </div>
+{% else %}
+    <div class="welcome">
+        <h2>Welcome!!!</h2>
+        <br>
+        <p>Hello! This is a site where you can create beautiful blogs. <br>If you are a new user, please register and freely express your ideas. <br>If you are an existing user, please login and continue letting your imagination and creativity fly....</p>
+    </div>
+{% endif %}
+
+<nav>
+    <!-- Left side -->
+    <div>
+        <a href="/">Home</a>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+        {% if user %}
+            <a href="/create">New Post</a>
+            <a href="/my-posts">My Posts</a>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        {% endif %}
+    </div>
+</nav>
+
+<hr>
+
+{% block content %}{% endblock %}
+
 </body>
 </html>
