@@ -10,14 +10,14 @@ from starlette.middleware.sessions import SessionMiddleware
 from config import Config
 from auth import verify_password
 from fastapi import status
-
+import os
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
 # Static files (CSS)
-app.mount("/static", StaticFiles(directory="static"), name="static")
+#app.mount("/static", StaticFiles(directory="static"), name="static")
 
 #Enables login sessions in FastAPI app when doing server-rendered pages 
 app.add_middleware(
@@ -25,7 +25,13 @@ app.add_middleware(
     secret_key=Config.SECRET_KEY
 )
 
-templates = Jinja2Templates(directory="templates")
+#templates = Jinja2Templates(directory="templates")
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 # Dependency
 def get_db():
