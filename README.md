@@ -12,6 +12,8 @@ Styling: Simple CSS <br>
 2. View a post
 3. Edit a post
 4. Delete a post
+## Result Screenshots
+Please find the screenshots here: https://github.com/Anisha-kk/Simple-Blog-Site/tree/main/Screenshots
 ## Link to live deployment of the app
 The app is deployed in Render. Please find the link here: https://simple-blog-site-xwx0.onrender.com/
 ## Future Scope
